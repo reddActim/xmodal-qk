@@ -14,6 +14,12 @@ export default function Modal({ isOpen, onClose }) {
     }
 
     const validated = (data) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+        if (!emailRegex.test(data.email)) 
+            { 
+                window.alert("Invalid email. Please enter a valid email address.");
+                return false; 
+            }
         if (data.phone.length < 10)
         {
             window.alert("Invalid phone number. Please enter a 10-digit phone number.");
@@ -55,7 +61,7 @@ export default function Modal({ isOpen, onClose }) {
                     <input type="number" id="phone" value={formData.phone} onChange={handleChange} />
                     <strong>Date of Birth:</strong>
                     <input type="date" id="dob" value={formData.dob} onChange={handleChange} />
-                    <button type="submit" >Submit</button>
+                    <button type="submit" className="submit-button" >Submit</button>
                 </form>
             </div>
         </div>
